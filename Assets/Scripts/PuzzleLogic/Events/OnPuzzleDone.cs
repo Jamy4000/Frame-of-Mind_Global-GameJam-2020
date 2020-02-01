@@ -21,6 +21,18 @@ namespace GGJ.PuzzleLogic
             UnityEngine.Debug.Log("On Puzzle Done : " + EndedPuzzle);
 
             EndedPuzzle = endedPuzzle;
+            switch (EndedPuzzle)
+            {
+                case EPuzzles.TUTORIAL:
+                    GameStateHolder.CurrentPuzzle = EPuzzles.SADNESS;
+                    break;
+                case EPuzzles.SADNESS:
+                    GameStateHolder.CurrentPuzzle = EPuzzles.ANGER;
+                    break;
+                case EPuzzles.ANGER:
+                    GameStateHolder.CurrentPuzzle = EPuzzles.HAPINESS;
+                    break;
+            }
 
             FireEvent(this);
         }

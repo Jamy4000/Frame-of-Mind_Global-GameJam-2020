@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1523,6 +1523,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1898676634696869579, guid: 0f1f8da4cf2730c4a810a7564c72097d,
+        type: 3}
+      propertyPath: _newUserPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898676634696869579, guid: 0f1f8da4cf2730c4a810a7564c72097d,
+        type: 3}
+      propertyPath: _newUserPosition.z
+      value: 14.7
+      objectReference: {fileID: 0}
     - target: {fileID: 4572965006745144912, guid: 0f1f8da4cf2730c4a810a7564c72097d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1896,7 +1906,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExpectedNeighbour: {fileID: 1732624926743118605}
-  _isCoreEdge: 1
+  IsCoreEdge: 1
+  _nextPiecesHelpers: []
   ParentPuzzlePiece: {fileID: 0}
   IsConnected: 0
 --- !u!1 &185059155865133108
@@ -2100,6 +2111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec67e3757202f384d9427b9b6475139d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ThisPuzzle: 0
+  _helper: {fileID: 0}
   IsPlacedOnCore: 0
   _baseTransform: {fileID: 1732624925061642047}
 --- !u!54 &1732624925401640961
@@ -2267,6 +2280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec67e3757202f384d9427b9b6475139d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ThisPuzzle: 0
+  _helper: {fileID: 0}
   IsPlacedOnCore: 0
   _baseTransform: {fileID: 1732624925774291101}
 --- !u!54 &1732624925425492810
@@ -2453,7 +2468,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExpectedNeighbour: {fileID: 1732624926404973064}
-  _isCoreEdge: 1
+  IsCoreEdge: 1
+  _nextPiecesHelpers: []
   ParentPuzzlePiece: {fileID: 0}
   IsConnected: 0
 --- !u!65 &1732624925463025524
@@ -2651,6 +2667,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec67e3757202f384d9427b9b6475139d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ThisPuzzle: 0
+  _helper: {fileID: 0}
   IsPlacedOnCore: 0
   _baseTransform: {fileID: 1732624925429713139}
 --- !u!54 &1732624926030348106
@@ -2808,7 +2826,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExpectedNeighbour: {fileID: 1732624926792764815}
-  _isCoreEdge: 0
+  IsCoreEdge: 0
+  _nextPiecesHelpers: []
   ParentPuzzlePiece: {fileID: 0}
   IsConnected: 0
 --- !u!65 &1732624926208093925
@@ -2871,7 +2890,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExpectedNeighbour: {fileID: 1732624925463025515}
-  _isCoreEdge: 0
+  IsCoreEdge: 0
+  _nextPiecesHelpers: []
   ParentPuzzlePiece: {fileID: 0}
   IsConnected: 0
 --- !u!65 &1732624926404973065
@@ -3098,7 +3118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExpectedNeighbour: {fileID: 185059154922034192}
-  _isCoreEdge: 0
+  IsCoreEdge: 0
+  _nextPiecesHelpers: []
   ParentPuzzlePiece: {fileID: 0}
   IsConnected: 0
 --- !u!65 &1732624926743118606
@@ -3205,7 +3226,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExpectedNeighbour: {fileID: 1732624926208093924}
-  _isCoreEdge: 0
+  IsCoreEdge: 0
+  _nextPiecesHelpers: []
   ParentPuzzlePiece: {fileID: 0}
   IsConnected: 0
 --- !u!33 &1732624926863068291
