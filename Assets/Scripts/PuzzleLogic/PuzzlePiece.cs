@@ -57,18 +57,11 @@ namespace GGJ.PuzzleLogic
                 ppe.ParentPuzzlePiece = this;
             }
 
-            OnConnectionErrorBetweenPieces.Listeners += ConnectionErrorCallback;
             OnPuzzlePieceEdgeConnected.Listeners += CheckConnectedPiece;
-        }
-        
-        private void Start()
-        {
-            ResetPuzzlePiece();
         }
 
         private void OnDestroy()
         {
-            OnConnectionErrorBetweenPieces.Listeners -= ConnectionErrorCallback;
             OnPuzzlePieceEdgeConnected.Listeners -= CheckConnectedPiece;
         }
 
@@ -98,9 +91,8 @@ namespace GGJ.PuzzleLogic
         /// <summary>
         /// Reset the puzzle piece after an error or after the disappearing effect
         /// </summary>
-        private void ResetPuzzlePiece()
+        public void ResetPuzzlePiece()
         {
-            Debug.LogError("TODO : DO THIS AFTER DISAPPEARING EFFECT");
             IsPlacedOnCore = false;
             ReleasePieceFromHand();
             transform.position = _baseTransform.position;
@@ -127,15 +119,6 @@ namespace GGJ.PuzzleLogic
                 transform.position = _positionOnPuzzle;
                 transform.rotation = _rotationOnPuzzle;
             }
-        }
-
-        /// <summary>
-        /// Callback for when an error is made by the user, reset the puzzle back to its basic place
-        /// </summary>
-        /// <param name="_"></param>
-        private void ConnectionErrorCallback(OnConnectionErrorBetweenPieces _)
-        {
-            ResetPuzzlePiece();
         }
     }
 }
