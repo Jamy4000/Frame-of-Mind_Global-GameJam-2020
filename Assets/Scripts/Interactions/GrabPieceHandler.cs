@@ -70,7 +70,7 @@ namespace GGJ.Interactions
             _hoverPieceHandler.LastHoveredPiece = null;
             _grabCollider.enabled = false;
 
-            new OnPuzzlePieceGrabbed(_grabedPuzzlePiece);
+            new OnPuzzlePieceGrabbed(_grabedPuzzlePiece, _hoverPieceHandler.ThisHand);
         }
 
         /// <summary>

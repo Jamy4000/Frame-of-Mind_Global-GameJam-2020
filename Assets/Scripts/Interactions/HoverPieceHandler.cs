@@ -1,6 +1,7 @@
 ﻿using GGJ.PuzzleLogic;
 using System.Collections.Generic;
 using UnityEngine;
+using VRSF.Core.Controllers;
 
 namespace GGJ.Interactions
 {
@@ -9,6 +10,11 @@ namespace GGJ.Interactions
     /// </summary>
     public class HoverPieceHandler : MonoBehaviour
     {
+        /// <summary>
+        /// The hand using this script, for haptic purposes
+        /// </summary>
+        public EHand ThisHand;
+
         /// <summary>
         /// The current pieces of puzzle that are being hovered by the user's hand. 
         /// Helpful for when the user hover multiple pieces of puzzles, keep track of at least one of the piece
@@ -52,7 +58,7 @@ namespace GGJ.Interactions
             CurrentlyHoveredPieces.Add(hoveredPuzzlePiece);
             LastHoveredPiece = hoveredPuzzlePiece;
 
-            new OnPuzzlePieceHovered(hoveredPuzzlePiece);
+            new OnPuzzlePieceHovered(hoveredPuzzlePiece, ThisHand);
         }
 
         /// <summary>
@@ -73,7 +79,7 @@ namespace GGJ.Interactions
             if (CurrentlyHoveredPieces.Count > 0)
             {
                 LastHoveredPiece = CurrentlyHoveredPieces[CurrentlyHoveredPieces.Count - 1];
-                new OnPuzzlePieceHovered(LastHoveredPiece);
+                new OnPuzzlePieceHovered(LastHoveredPiece, ThisHand);
             }
             else
             {
