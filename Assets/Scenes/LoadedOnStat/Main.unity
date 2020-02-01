@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 400720395}
   - component: {fileID: 400720394}
   - component: {fileID: 400720393}
+  - component: {fileID: 400720396}
   m_Layer: 0
   m_Name: PuzzlePiece_1
   m_TagString: PuzzlePiece
@@ -488,6 +489,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 400720391}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &400720396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400720391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e524680deab494289363e4b2473df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deactivateAfter: 2
 --- !u!1 &447965733
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,6 +872,7 @@ GameObject:
   - component: {fileID: 1425018844}
   - component: {fileID: 1425018843}
   - component: {fileID: 1425018842}
+  - component: {fileID: 1425018845}
   m_Layer: 0
   m_Name: PuzzlePiece_2
   m_TagString: PuzzlePiece
@@ -939,6 +954,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1425018840}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1425018845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425018840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e524680deab494289363e4b2473df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deactivateAfter: 2
 --- !u!1 &1884291520
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +979,7 @@ GameObject:
   - component: {fileID: 1884291524}
   - component: {fileID: 1884291523}
   - component: {fileID: 1884291522}
+  - component: {fileID: 1884291525}
   m_Layer: 0
   m_Name: PuzzlePiece_0
   m_TagString: PuzzlePiece
@@ -1032,6 +1061,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884291520}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1884291525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884291520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e524680deab494289363e4b2473df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deactivateAfter: 1
 --- !u!1001 &1936310555
 PrefabInstance:
   m_ObjectHideFlags: 0
