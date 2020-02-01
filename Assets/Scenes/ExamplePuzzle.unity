@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -187,6 +187,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SetupVR_Main
+      objectReference: {fileID: 0}
+    - target: {fileID: 6105498514602025984, guid: 4c37398aae181be4bab0535a79a7f6dd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.524
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c37398aae181be4bab0535a79a7f6dd, type: 3}
