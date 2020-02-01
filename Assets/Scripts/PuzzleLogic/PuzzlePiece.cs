@@ -60,6 +60,11 @@ namespace GGJ.PuzzleLogic
             OnPuzzlePieceEdgeConnected.Listeners += CheckConnectedPiece;
         }
 
+        private void Start()
+        {
+            ResetPuzzlePiece();
+        }
+
         private void OnDestroy()
         {
             OnPuzzlePieceEdgeConnected.Listeners -= CheckConnectedPiece;
