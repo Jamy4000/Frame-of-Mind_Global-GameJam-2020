@@ -38,6 +38,12 @@ namespace GGJ.Interactions
             OnConnectionErrorBetweenPieces.Listeners += ErrorWithConnectionCallback;
         }
 
+        private void Update() 
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                GrabPuzzlesPiece();
+        }
+
         private void OnDestroy()
         {
             OnPuzzlePieceEdgeConnected.Listeners -= PieceConnectedCallback;
