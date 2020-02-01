@@ -110,7 +110,7 @@ namespace GGJ.PuzzleLogic
         private void OnGrabPuzzlePieceCallback(Interactions.OnPuzzlePieceGrabbed info)
         {
             // If this is an unconnected core edge, OR this edge is not connected, this is not a core edge AND the puzzle piece this edge belongs to is placed on the core OR the picked up puzzle piece is the parent of this edge
-            _collider.enabled = (IsCoreEdge && !IsConnected) || (!IsConnected && !IsCoreEdge && ParentPuzzlePiece.IsPlacedOnCore) || info.GrabbedPuzzlePiece == ParentPuzzlePiece;
+            _collider.enabled = (IsCoreEdge && !IsConnected) || (!IsConnected && !IsCoreEdge && ParentPuzzlePiece != null && ParentPuzzlePiece.IsPlacedOnCore) || info.GrabbedPuzzlePiece == ParentPuzzlePiece;
         }
     }
 }
