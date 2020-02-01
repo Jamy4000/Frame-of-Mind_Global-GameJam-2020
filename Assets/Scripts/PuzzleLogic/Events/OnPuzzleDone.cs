@@ -1,6 +1,6 @@
 ﻿using GGJ.Utils;
 
-namespace GGJ.GameLogic
+namespace GGJ.PuzzleLogic
 {
     /// <summary>
     /// Event raised when the user finished a puzzle
@@ -18,6 +18,8 @@ namespace GGJ.GameLogic
         /// <param name="endedPuzzle">The puzzle that was finished by the user</param>
         public OnPuzzleDone(EPuzzles endedPuzzle) : base("Event raised when the user finished a puzzle")
         {
+            UnityEngine.Debug.Log("On Puzzle Done : " + EndedPuzzle);
+
             EndedPuzzle = endedPuzzle;
 
             FireEvent(this);
