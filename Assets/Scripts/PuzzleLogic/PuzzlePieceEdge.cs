@@ -70,11 +70,11 @@ namespace GGJ.PuzzleLogic
                 IsConnected = true;
                 _collider.enabled = false;
                 // To avoid that the event is thrown two times
-                if (!ParentPuzzlePiece.IsPlacedOnCore && !_isCoreEdge)
+                if (!_isCoreEdge && !ParentPuzzlePiece.IsPlacedOnCore)
                     new OnPuzzlePieceEdgeConnected(this);
             }
             // To avoid that the event is thrown two times
-            else if (!ParentPuzzlePiece.IsPlacedOnCore && !_isCoreEdge)
+            else if (!_isCoreEdge && !ParentPuzzlePiece.IsPlacedOnCore)
             {
                 new OnConnectionErrorBetweenPieces(GetComponentInParent<PuzzlePiece>());
             }
