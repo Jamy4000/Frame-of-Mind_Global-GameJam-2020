@@ -67,14 +67,15 @@ namespace GGJ.PuzzleLogic
             // If the neighbor's expected edge is this one, this was correct
             if (edgeToCheck.ExpectedNeighbour == this)
             {
-                Debug.Log("Correctly joined two pieces of puzzle !");
-                _collider.enabled = false;
                 IsConnected = true;
-                new OnPuzzlePieceEdgeConnected(this);
+                _collider.enabled = false;
+                // To avoid that the event is thrown two times
+                if (!ParentPuzzlePiece.IsPlacedOnCore && !_isCoreEdge)
+                    new OnPuzzlePieceEdgeConnected(this);
             }
-            else
+            // To avoid that the event is thrown two times
+            else if (!ParentPuzzlePiece.IsPlacedOnCore && !_isCoreEdge)
             {
-                Debug.Log("WROOOOOOOOOOONG");
                 new OnConnectionErrorBetweenPieces(GetComponentInParent<PuzzlePiece>());
             }
         }

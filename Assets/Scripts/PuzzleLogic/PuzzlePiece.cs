@@ -83,7 +83,6 @@ namespace GGJ.PuzzleLogic
 
             transform.SetParent(newParent);
             transform.localPosition = Vector3.zero;
-            transform.localRotation = Quaternion.identity;
         }
 
         /// <summary>

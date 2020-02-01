@@ -9,19 +9,18 @@ namespace GGJ.PuzzleLogic
     /// </summary>
     public class Puzzle : MonoBehaviour
     {
-        [SerializeField] private EPuzzles _thisPuzzle;
+        [SerializeField]
+        private EPuzzles _thisPuzzle;
+
+        [SerializeField]
+        private List<PuzzlePiece> _puzzlePieces = new List<PuzzlePiece>();
 
         public bool IsCompleted;
-
-        private List<PuzzlePiece> _puzzlePieces = new List<PuzzlePiece>();
 
         private int _connectedPiecesCount = 0;
 
         private void Awake()
         {
-            foreach (var pp in GetComponentsInChildren<PuzzlePiece>())
-                _puzzlePieces.Add(pp);
-            
             if (_thisPuzzle == EPuzzles.TUTORIAL)
             {
                 OnPuzzlePieceEdgeConnected.Listeners += OnPuzzlePieceConnectedCallback;
