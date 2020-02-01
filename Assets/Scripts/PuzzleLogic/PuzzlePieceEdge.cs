@@ -17,8 +17,7 @@ namespace GGJ.PuzzleLogic
         /// Is this an edge of the core ?
         /// </summary>
         [Header("Is this an edge of the core ?")]
-        [SerializeField]
-        private bool _isCoreEdge;
+        public bool IsCoreEdge;
 
         /// <summary>
         /// Set at runtime by the parent itself, reference to it
@@ -69,14 +68,16 @@ namespace GGJ.PuzzleLogic
             {
                 IsConnected = true;
                 _collider.enabled = false;
+
                 // To avoid that the event is thrown two times
-                if (!_isCoreEdge && !ParentPuzzlePiece.IsPlacedOnCore)
+                if (!IsCoreEdge && !ParentPuzzlePiece.IsPlacedOnCore)
                     new OnPuzzlePieceEdgeConnected(this);
             }
             // To avoid that the event is thrown two times
-            else if (!_isCoreEdge && !ParentPuzzlePiece.IsPlacedOnCore)
+            else if (!IsCoreEdge && !ParentPuzzlePiece.IsPlacedOnCore)
             {
-                new OnConnectionErrorBetweenPieces(GetComponentInParent<PuzzlePiece>());
+                Debug.Log("New error !");
+                new OnConnectionErrorBetweenPieces(ParentPuzzlePiece);
             }
         }
 
@@ -98,7 +99,7 @@ namespace GGJ.PuzzleLogic
         /// <param name="_"></param>
         private void ConnectionErrorCallback(OnConnectionErrorBetweenPieces _)
         {
-            _collider.enabled = _isCoreEdge;
+            _collider.enabled = IsCoreEdge;
             IsConnected = false;
         }
 
@@ -109,7 +110,7 @@ namespace GGJ.PuzzleLogic
         private void OnGrabPuzzlePieceCallback(Interactions.OnPuzzlePieceGrabbed info)
         {
             // If this is an unconnected core edge, OR this edge is not connected, this is not a core edge AND the puzzle piece this edge belongs to is placed on the core OR the picked up puzzle piece is the parent of this edge
-            _collider.enabled = (_isCoreEdge && !IsConnected) || (!IsConnected && !_isCoreEdge && ParentPuzzlePiece.IsPlacedOnCore) || info.GrabbedPuzzlePiece == ParentPuzzlePiece;
+            _collider.enabled = (IsCoreEdge && !IsConnected) || (!IsConnected && !IsCoreEdge && ParentPuzzlePiece != null && ParentPuzzlePiece.IsPlacedOnCore) || info.GrabbedPuzzlePiece == ParentPuzzlePiece;
         }
     }
 }

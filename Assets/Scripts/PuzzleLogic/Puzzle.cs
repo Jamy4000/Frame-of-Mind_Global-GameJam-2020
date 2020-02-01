@@ -21,7 +21,7 @@ namespace GGJ.PuzzleLogic
 
         private void Awake()
         {
-            if (_thisPuzzle == EPuzzles.TUTORIAL)
+            if (_thisPuzzle == EPuzzles.TUTORIAL || _thisPuzzle == EPuzzles.SADNESS)
             {
                 OnPuzzlePieceEdgeConnected.Listeners += OnPuzzlePieceConnectedCallback;
                 OnConnectionErrorBetweenPieces.Listeners += ResetCounter;
@@ -52,13 +52,6 @@ namespace GGJ.PuzzleLogic
         {
             switch (info.EndedPuzzle)
             {
-                case EPuzzles.TUTORIAL:
-                    if (_thisPuzzle == EPuzzles.SADNESS)
-                    {
-                        OnPuzzlePieceEdgeConnected.Listeners += OnPuzzlePieceConnectedCallback;
-                        OnConnectionErrorBetweenPieces.Listeners += ResetCounter;
-                    }
-                    break;
                 case EPuzzles.SADNESS:
                     if (_thisPuzzle == EPuzzles.ANGER)
                     {

@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: ae719278cd1310c47bd4b2b80284dc15
+guid: 5f9d7f98179ed4246a0eed552bb8d3ba
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Relikt_Trauer_Fractured
+    second: {fileID: 2100000, guid: 8029d06ce62a33646938a00c584467b4, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

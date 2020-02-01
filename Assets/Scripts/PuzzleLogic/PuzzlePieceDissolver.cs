@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GGJ.PuzzleLogic
@@ -18,9 +17,15 @@ namespace GGJ.PuzzleLogic
 
         private void Awake() 
         {
-            OnConnectionErrorBetweenPieces.Listeners += ConnectionErrorCallback;
             _puzzlePiece = GetComponent<PuzzlePiece>();
             _renderer = GetComponent<MeshRenderer>();
+            
+            OnConnectionErrorBetweenPieces.Listeners += ConnectionErrorCallback;
+        }
+
+        private void OnDestroy()
+        {
+            OnConnectionErrorBetweenPieces.Listeners -= ConnectionErrorCallback;
         }
 
         private void Update() 
@@ -45,18 +50,14 @@ namespace GGJ.PuzzleLogic
             }
         }
 
-        private void OnDestroy() 
-        {
-            OnConnectionErrorBetweenPieces.Listeners -= ConnectionErrorCallback;
-        }
-
         /// <summary>
         /// Callback for when an error is made by the user, reset the puzzle back to its basic place
         /// </summary>
         /// <param name="_"></param>
         private void ConnectionErrorCallback(OnConnectionErrorBetweenPieces _)
         {
-            _isDissolving = true;
+            if (_puzzlePiece.ThisPuzzle == Utils.GameStateHolder.CurrentPuzzle)
+                _isDissolving = true;
         }
     }
 }

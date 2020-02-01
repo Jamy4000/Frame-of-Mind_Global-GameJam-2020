@@ -38,11 +38,13 @@ namespace GGJ.Interactions
             OnConnectionErrorBetweenPieces.Listeners += ErrorWithConnectionCallback;
         }
 
+#if UNITY_EDITOR
         private void Update() 
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 GrabPuzzlesPiece();
         }
+#endif
 
         private void OnDestroy()
         {

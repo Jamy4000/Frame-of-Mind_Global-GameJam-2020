@@ -8,6 +8,14 @@ namespace GGJ.PuzzleLogic
     /// </summary>
     public class PuzzlePiece : MonoBehaviour
     {
+        public Utils.EPuzzles ThisPuzzle;
+
+        [SerializeField]
+        private PuzzlePieceHelper _helper;
+
+        [SerializeField]
+        private PuzzlePieceHelper[] _nextHelpers;
+
         /// <summary>
         /// Is the piece of puzzle already placed on the Puzzle's Core
         /// </summary>
@@ -60,6 +68,21 @@ namespace GGJ.PuzzleLogic
             OnPuzzlePieceEdgeConnected.Listeners += CheckConnectedPiece;
         }
 
+        private void Start()
+        {
+            ResetPuzzlePiece();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.position = _positionOnPuzzle;
+                transform.rotation = _rotationOnPuzzle;
+            }
+                
+        }
+
         private void OnDestroy()
         {
             OnPuzzlePieceEdgeConnected.Listeners -= CheckConnectedPiece;
@@ -72,7 +95,6 @@ namespace GGJ.PuzzleLogic
         public void GrabPiece(Transform newParent)
         {
             _rb.useGravity = false;
-            _rb.isKinematic = true;
 
             transform.SetParent(newParent);
             transform.localPosition = Vector3.zero;
@@ -85,7 +107,6 @@ namespace GGJ.PuzzleLogic
         {
             transform.SetParent(_baseParent);
             _rb.useGravity = !IsPlacedOnCore;
-            _rb.isKinematic = IsPlacedOnCore;
         }
 
         /// <summary>
@@ -94,6 +115,10 @@ namespace GGJ.PuzzleLogic
         public void ResetPuzzlePiece()
         {
             IsPlacedOnCore = false;
+
+            if (_helper != null)
+                _helper.DeactivateHelper(true);
+
             ReleasePieceFromHand();
             transform.position = _baseTransform.position;
             transform.rotation = _baseTransform.rotation;
@@ -115,6 +140,13 @@ namespace GGJ.PuzzleLogic
             void PlacePuzzlePieceOnCore()
             {
                 IsPlacedOnCore = true;
+
+                if (_helper != null)
+                    _helper.DeactivateHelper(false);
+
+                foreach (var nextHelper in _nextHelpers)
+                    nextHelper.ActivateHelper();
+
                 ReleasePieceFromHand();
                 transform.position = _positionOnPuzzle;
                 transform.rotation = _rotationOnPuzzle;
