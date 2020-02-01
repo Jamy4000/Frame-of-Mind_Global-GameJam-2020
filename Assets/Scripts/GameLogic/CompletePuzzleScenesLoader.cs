@@ -27,6 +27,15 @@ namespace GGJ.Tutorial
             //}
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                new PuzzleLogic.OnPuzzleDone(Utils.GameStateHolder.CurrentPuzzle);
+            }
+            // Anger : 1.3 y + 0,2 size, forgot tags
+        }
+
         private void CheckTutoStepDone(OnTutorialStepDone info)
         {
             if (info.TutorialStepDone == ETutorialSteps.PLACE_REST_OF_PUZZLE)

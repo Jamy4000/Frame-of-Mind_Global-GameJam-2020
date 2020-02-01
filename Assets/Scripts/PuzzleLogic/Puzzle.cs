@@ -30,6 +30,9 @@ namespace GGJ.PuzzleLogic
             {
                 OnPuzzleDone.Listeners += ActivateThisPuzzle;
             }
+
+            // Anger puzzle script miss pieces
+            // Hapiness : 49.5 z, redo colliders
         }
 
         private void OnPuzzlePieceConnectedCallback(OnPuzzlePieceEdgeConnected info)
@@ -39,6 +42,7 @@ namespace GGJ.PuzzleLogic
             {
                 OnPuzzlePieceEdgeConnected.Listeners -= OnPuzzlePieceConnectedCallback;
                 OnConnectionErrorBetweenPieces.Listeners -= ResetCounter;
+                Debug.Log("new OnPuzzleDone(_thisPuzzle) " + _thisPuzzle);
                 new OnPuzzleDone(_thisPuzzle);
             }
         }
