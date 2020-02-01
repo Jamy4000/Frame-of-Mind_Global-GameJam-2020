@@ -40,8 +40,9 @@ namespace GGJ.Utils
             void TeleportUser(OnFadingOutEndedEvent _)
             {
                 OnFadingOutEndedEvent.Listeners -= TeleportUser; 
-                VRSF.Core.SetupVR.VRSF_Components.SetVRCameraPosition(_newUserPosition);
-                //new StartFadingInEvent();
+                VRSF.Core.SetupVR.VRSF_Components.CameraRig.transform.position = _newUserPosition;
+                if (_thisPuzzle == EPuzzles.TUTORIAL)
+                    VRSF.Core.SetupVR.VRSF_Components.VRCamera.GetComponent<Camera>().farClipPlane = 1000.0f;
             }
         }
     }
