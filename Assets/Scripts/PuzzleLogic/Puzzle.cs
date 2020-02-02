@@ -13,6 +13,10 @@ namespace GGJ.PuzzleLogic
 
         [SerializeField]
         private List<PuzzlePiece> _puzzlePieces = new List<PuzzlePiece>();
+        [SerializeField]
+        private GameObject _fullModel;
+        [SerializeField]
+        private GameObject _fracturedModel;
 
         public bool IsCompleted;
 
@@ -31,6 +35,15 @@ namespace GGJ.PuzzleLogic
             }
         }
 
+        private void Start()
+        {
+            if (ThisPuzzle != EPuzzles.TUTORIAL)
+            {
+                _fracturedModel.SetActive(true);
+                _fullModel.SetActive(false);
+            }
+        }
+
         private void OnDestroy()
         {
             OnPuzzlePieceEdgeConnected.Listeners -= OnPuzzlePieceConnectedCallback;
@@ -46,6 +59,11 @@ namespace GGJ.PuzzleLogic
                 OnPuzzlePieceEdgeConnected.Listeners -= OnPuzzlePieceConnectedCallback;
                 OnConnectionErrorBetweenPieces.Listeners -= ResetCounter;
                 IsCompleted = true;
+                if (ThisPuzzle != EPuzzles.TUTORIAL)
+                {
+                    _fracturedModel.SetActive(false);
+                    _fullModel.SetActive(true);
+                }
                 new OnPuzzleDone(ThisPuzzle);
             }
         }
