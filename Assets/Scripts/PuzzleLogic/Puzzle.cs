@@ -92,7 +92,8 @@ namespace GGJ.PuzzleLogic
                     }
                     break;
                 case EPuzzles.HAPINESS:
-                    new GameLogic.OnGameEnded();
+                    if (ThisPuzzle == EPuzzles.HAPINESS)
+                        new GameLogic.OnGameEnded();
                     break;
                 default:
                     Debug.LogError("ExcuseMeWhatTheFuck");

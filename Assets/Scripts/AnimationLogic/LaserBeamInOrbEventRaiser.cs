@@ -11,7 +11,5 @@ namespace GGJ.AnimationLogic
         {
             new OnLaserBeamReachedCenter();
         }
-        
-        // reduce size of second puzzle, redo beam and placement
     }
 }

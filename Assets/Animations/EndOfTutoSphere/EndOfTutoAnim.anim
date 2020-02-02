@@ -319,7 +319,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0.2, y: 0.2, z: 0.2}
+        value: {x: 0.4, y: 0.4, z: 0.4}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -329,8 +329,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 5.3333335
         value: {x: 0.2, y: 0.2, z: 0.2}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        inSlope: {x: -0.07272727, y: -0.07272727, z: -0.07272727}
+        outSlope: {x: -0.07272727, y: -0.07272727, z: -0.07272727}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -1158,7 +1158,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.2
+        value: 0.4
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1168,8 +1168,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 5.3333335
         value: 0.2
-        inSlope: 0
-        outSlope: 0
+        inSlope: -0.07272727
+        outSlope: -0.07272727
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -1195,7 +1195,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.2
+        value: 0.4
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1205,8 +1205,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 5.3333335
         value: 0.2
-        inSlope: 0
-        outSlope: 0
+        inSlope: -0.07272727
+        outSlope: -0.07272727
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -1232,7 +1232,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.2
+        value: 0.4
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1242,8 +1242,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 5.3333335
         value: 0.2
-        inSlope: 0
-        outSlope: 0
+        inSlope: -0.07272727
+        outSlope: -0.07272727
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -1786,4 +1786,11 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 6.0333333
+    functionName: PlayLaserSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

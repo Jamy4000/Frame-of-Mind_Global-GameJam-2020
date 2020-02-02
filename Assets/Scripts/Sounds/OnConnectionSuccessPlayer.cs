@@ -11,8 +11,6 @@ namespace GGJ.Sounds
     public class OnConnectionSuccessPlayer : MonoBehaviour
     {
         private AudioSource _audioSource;
-        [SerializeField]
-        private PuzzleLogic.PuzzlePiece _puzzlePiece;
 
         private void Awake()
         {
