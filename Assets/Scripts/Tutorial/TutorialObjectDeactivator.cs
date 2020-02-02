@@ -15,6 +15,12 @@ namespace GGJ.Tutorial
             OnTutorialStepDone.Listeners += CheckNewTutoStep;
         }
 
+        private void OnDestroy()
+        {
+            if (OnTutorialStepDone.IsMethodAlreadyRegistered(CheckNewTutoStep))
+                OnTutorialStepDone.Listeners -= CheckNewTutoStep;
+        }
+
         private void CheckNewTutoStep(OnTutorialStepDone info)
         {
             if (info.TutorialStepDone == _deactivateAfter)

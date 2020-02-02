@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace GGJ.Tutorial
@@ -9,22 +11,11 @@ namespace GGJ.Tutorial
     public class CompletePuzzleScenesLoader : MonoBehaviour
     {
         [SerializeField] private string[] _sceneToLoadOnTutoEnd;
-
-        private AsyncOperation[] _sceneLoadingAsyncOps;
+        [SerializeField] private float _timeToWaitBeforeLoad = 15.0f;
 
         private void Awake()
         {
             OnTutorialStepDone.Listeners += CheckTutoStepDone;
-
-            _sceneLoadingAsyncOps = new AsyncOperation[_sceneToLoadOnTutoEnd.Length];
-
-            Debug.LogError("TODO Uncomment this once the scenes are completed, the loading is too fast right now");
-            //// prepare the scenes to load on tuto ended, but do not activate them
-            //for (int i = 0; i < _sceneToLoadOnTutoEnd.Length; i++)
-            //{
-            //    _sceneLoadingAsyncOps[i] = SceneManager.LoadSceneAsync(_sceneToLoadOnTutoEnd[i], LoadSceneMode.Additive);
-            //    _sceneLoadingAsyncOps[i].allowSceneActivation = false;
-            //}
         }
 
         private void Update()
@@ -33,7 +24,11 @@ namespace GGJ.Tutorial
             {
                 new PuzzleLogic.OnPuzzleDone(Utils.GameStateHolder.CurrentPuzzle);
             }
-            // Anger : 1.3 y + 0,2 size, forgot tags
+        }
+
+        private void OnDestroy()
+        {
+            OnTutorialStepDone.Listeners -= CheckTutoStepDone;
         }
 
         private void CheckTutoStepDone(OnTutorialStepDone info)
@@ -41,18 +36,20 @@ namespace GGJ.Tutorial
             if (info.TutorialStepDone == ETutorialSteps.PLACE_REST_OF_PUZZLE)
             {
                 OnTutorialStepDone.Listeners -= CheckTutoStepDone;
-                FinishLoadingPuzzlesScenes();
+                StartCoroutine(WaitBeforeLoadingScene());
             }
+        }
+
+        private IEnumerator WaitBeforeLoadingScene()
+        {
+            yield return new WaitForSeconds(_timeToWaitBeforeLoad);
+            FinishLoadingPuzzlesScenes();
         }
 
         private void FinishLoadingPuzzlesScenes()
         {
             for (int i = 0; i < _sceneToLoadOnTutoEnd.Length; i++)
-                _sceneLoadingAsyncOps[i] = SceneManager.LoadSceneAsync(_sceneToLoadOnTutoEnd[i], LoadSceneMode.Additive);
-
-            //Debug.LogError("TODO Uncomment this and comment the beginning of this method once the scenes are finished, the loading is too fast right now");
-            //foreach (var asyncOp in _sceneLoadingAsyncOps)
-            //    asyncOp.allowSceneActivation = true;
+                SceneManager.LoadSceneAsync(_sceneToLoadOnTutoEnd[i], LoadSceneMode.Additive);
         }
     }
 }
