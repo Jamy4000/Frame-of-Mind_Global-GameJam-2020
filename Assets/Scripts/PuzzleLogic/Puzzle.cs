@@ -9,8 +9,7 @@ namespace GGJ.PuzzleLogic
     /// </summary>
     public class Puzzle : MonoBehaviour
     {
-        [SerializeField]
-        private EPuzzles _thisPuzzle;
+        public EPuzzles ThisPuzzle;
 
         [SerializeField]
         private List<PuzzlePiece> _puzzlePieces = new List<PuzzlePiece>();
@@ -21,7 +20,7 @@ namespace GGJ.PuzzleLogic
 
         private void Awake()
         {
-            if (_thisPuzzle == EPuzzles.TUTORIAL || _thisPuzzle == EPuzzles.SADNESS)
+            if (ThisPuzzle == EPuzzles.TUTORIAL || ThisPuzzle == EPuzzles.SADNESS)
             {
                 OnPuzzlePieceEdgeConnected.Listeners += OnPuzzlePieceConnectedCallback;
                 OnConnectionErrorBetweenPieces.Listeners += ResetCounter;
@@ -32,6 +31,13 @@ namespace GGJ.PuzzleLogic
             }
         }
 
+        private void OnDestroy()
+        {
+            OnPuzzlePieceEdgeConnected.Listeners -= OnPuzzlePieceConnectedCallback;
+            OnConnectionErrorBetweenPieces.Listeners -= ResetCounter;
+            OnPuzzleDone.Listeners -= ActivateThisPuzzle;
+        }
+
         private void OnPuzzlePieceConnectedCallback(OnPuzzlePieceEdgeConnected info)
         {
             _connectedPiecesCount++;
@@ -39,7 +45,8 @@ namespace GGJ.PuzzleLogic
             {
                 OnPuzzlePieceEdgeConnected.Listeners -= OnPuzzlePieceConnectedCallback;
                 OnConnectionErrorBetweenPieces.Listeners -= ResetCounter;
-                new OnPuzzleDone(_thisPuzzle);
+                IsCompleted = true;
+                new OnPuzzleDone(ThisPuzzle);
             }
         }
 
@@ -53,14 +60,14 @@ namespace GGJ.PuzzleLogic
             switch (info.EndedPuzzle)
             {
                 case EPuzzles.SADNESS:
-                    if (_thisPuzzle == EPuzzles.ANGER)
+                    if (ThisPuzzle == EPuzzles.ANGER)
                     {
                         OnPuzzlePieceEdgeConnected.Listeners += OnPuzzlePieceConnectedCallback;
                         OnConnectionErrorBetweenPieces.Listeners += ResetCounter;
                     }
                     break;
                 case EPuzzles.ANGER:
-                    if (_thisPuzzle == EPuzzles.HAPINESS)
+                    if (ThisPuzzle == EPuzzles.HAPINESS)
                     {
                         OnPuzzlePieceEdgeConnected.Listeners += OnPuzzlePieceConnectedCallback;
                         OnConnectionErrorBetweenPieces.Listeners += ResetCounter;

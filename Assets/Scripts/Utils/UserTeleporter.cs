@@ -1,5 +1,4 @@
 ﻿using GGJ.PuzzleLogic;
-using System;
 using System.Collections;
 using UnityEngine;
 using VRSF.Core.FadingEffect;
@@ -23,6 +22,8 @@ namespace GGJ.Utils
         private void OnDestroy()
         {
             OnPuzzleDone.Listeners -= CheckFinishedPuzzle;
+            if (OnFadingOutEndedEvent.IsMethodAlreadyRegistered(TeleportUser))
+                OnFadingOutEndedEvent.Listeners -= TeleportUser;
         }
 
         private void CheckFinishedPuzzle(OnPuzzleDone info)
@@ -37,13 +38,12 @@ namespace GGJ.Utils
                 OnFadingOutEndedEvent.Listeners += TeleportUser;
                 new StartFadingOutEvent(true);
             }
+        }
 
-            void TeleportUser(OnFadingOutEndedEvent _)
-            {
-                OnFadingOutEndedEvent.Listeners -= TeleportUser; 
-                VRSF.Core.SetupVR.VRSF_Components.SetVRCameraPosition(_newUserPosition);
-                //new StartFadingInEvent();
-            }
+        void TeleportUser(OnFadingOutEndedEvent _)
+        {
+            OnFadingOutEndedEvent.Listeners -= TeleportUser;
+            VRSF.Core.SetupVR.VRSF_Components.CameraRig.transform.position = _newUserPosition;
         }
     }
 }

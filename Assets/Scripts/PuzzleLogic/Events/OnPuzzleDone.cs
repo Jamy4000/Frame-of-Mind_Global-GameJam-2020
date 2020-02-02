@@ -32,7 +32,12 @@ namespace GGJ.PuzzleLogic
                 case EPuzzles.ANGER:
                     GameStateHolder.CurrentPuzzle = EPuzzles.HAPINESS;
                     break;
+                default:
+                    UnityEngine.Debug.LogError("ExcuseMeWATZEFUK");
+                    break;
             }
+
+            UnityEngine.Debug.Log("New Current Puzzle : " + GameStateHolder.CurrentPuzzle);
 
             FireEvent(this);
         }

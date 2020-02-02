@@ -73,16 +73,6 @@ namespace GGJ.PuzzleLogic
             ResetPuzzlePiece();
         }
 
-        private void Update()
-        {
-            if (Input.GetKey(KeyCode.D))
-            {
-                transform.position = _positionOnPuzzle;
-                transform.rotation = _rotationOnPuzzle;
-            }
-                
-        }
-
         private void OnDestroy()
         {
             OnPuzzlePieceEdgeConnected.Listeners -= CheckConnectedPiece;
