@@ -28,7 +28,7 @@ namespace GGJ.PuzzleLogic
             {
                 if (_isGoingUp)
                 {
-                    transform.position += new Vector3(0.0f, Time.deltaTime * (_isGoingUpForTheFirstTime ? _animSpeed : _animSpeed * 10), 0.0f);
+                    transform.position += new Vector3(0.0f, Time.deltaTime * (_isGoingUpForTheFirstTime ? _animSpeed * 10 : _animSpeed), 0.0f);
                     if (transform.position.y >= _basePosition.y + 1.5f)
                     {
                         _isGoingUp = false;
