@@ -11,7 +11,7 @@ namespace GGJ.Sounds
     {
         private AudioSource _audioSource;
         [SerializeField]
-        private PuzzleLogic.PuzzlePiece _puzzlePiece;
+        private VRSF.Core.Controllers.EHand _handHolding;
 
         private void Awake()
         {
@@ -28,7 +28,7 @@ namespace GGJ.Sounds
 
         private void PlaySound(OnPuzzlePieceGrabbed info)
         {
-            if (info.GrabbedPuzzlePiece == _puzzlePiece)
+            if (info.HandGrabbing == _handHolding)
                 _audioSource.Play();
         }
 
