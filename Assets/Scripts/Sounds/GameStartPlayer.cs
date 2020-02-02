@@ -10,19 +10,10 @@ namespace GGJ.Sounds
     public class GameStartPlayer : MonoBehaviour
     {
         private AudioSource _audioSource;
-        [SerializeField]
-        private AudioSource _zoneA;
-        [SerializeField]
-        private AudioSource _zoneB;
-        [SerializeField]
-        private AudioSource _zoneC;
 
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
-            _zoneA = GetComponent<AudioSource>();
-            _zoneB = GetComponent<AudioSource>();
-            _zoneC = GetComponent<AudioSource>();
             OnGameStarted.Listeners += PlaySound;
         }
 
