@@ -11,6 +11,7 @@ namespace GGJ.PuzzleLogic
         private Animator _animator;
 
         private Vector3 _basePosition;
+        private bool _isGoingUpForTheFirstTime = true;
         private bool _isGoingUp = true;
 
         private void Awake()
@@ -27,14 +28,18 @@ namespace GGJ.PuzzleLogic
             {
                 if (_isGoingUp)
                 {
-                    transform.position += new Vector3(0.0f, Time.deltaTime * _animSpeed, 0.0f);
+                    transform.position += new Vector3(0.0f, Time.deltaTime * (_isGoingUpForTheFirstTime ? _animSpeed : _animSpeed * 10), 0.0f);
                     if (transform.position.y >= _basePosition.y + 1.5f)
+                    {
                         _isGoingUp = false;
+                        if (_isGoingUpForTheFirstTime)
+                            _isGoingUpForTheFirstTime = false;
+                    }
                 }
                 else
                 {
                     transform.position -= new Vector3(0.0f, Time.deltaTime * _animSpeed, 0.0f);
-                    if (transform.position.y <= _basePosition.y + 1.0f)
+                    if (transform.position.y <= _basePosition.y + 1.3f)
                         _isGoingUp = true;
                 }
             }

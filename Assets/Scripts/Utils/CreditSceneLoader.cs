@@ -17,7 +17,7 @@ namespace GGJ.Utils
 
         private void OnDestroy()
         {
-            GameLogic.OnGameEnded.Listeners += LoadCreditScene;
+            GameLogic.OnGameEnded.Listeners -= LoadCreditScene;
         }
 
         private void LoadCreditScene(OnGameEnded info)
