@@ -14,6 +14,13 @@ namespace GGJ.Tutorial
             OnPuzzlePieceGrabbed.Listeners += StartGame;
         }
 
+        private void OnDestroy()
+        {
+            OnPuzzlePieceGrabbed.Listeners -= StartGame;
+            OnPuzzlePieceEdgeConnected.Listeners -= GoToLastTutoStep;
+            OnPuzzleDone.Listeners -= FinishTuto;
+        }
+
         private void StartGame(OnPuzzlePieceGrabbed info)
         {
             OnPuzzlePieceGrabbed.Listeners -= StartGame;
