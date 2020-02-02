@@ -12,6 +12,7 @@ namespace GGJ.AnimationLogic
         private void Awake()
         {
             OnLaserBeamReachedCenter.Listeners += AddColorToBeam;
+            _orbRenderer = GetComponent<Renderer>();
         }
 
         private void OnDestroy()

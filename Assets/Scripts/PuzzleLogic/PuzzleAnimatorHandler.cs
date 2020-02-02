@@ -11,6 +11,7 @@ namespace GGJ.PuzzleLogic
         private Animator _animator;
 
         private Vector3 _basePosition;
+        private bool _isGoingUp = true;
 
         private void Awake()
         {
@@ -24,10 +25,18 @@ namespace GGJ.PuzzleLogic
         {
             if (_puzzle.IsCompleted)
             {
-                if (transform.position.y <= _basePosition.y + 2.0f)
+                if (_isGoingUp)
+                {
                     transform.position += new Vector3(0.0f, Time.deltaTime * _animSpeed, 0.0f);
+                    if (transform.position.y >= _basePosition.y + 1.5f)
+                        _isGoingUp = false;
+                }
                 else
+                {
                     transform.position -= new Vector3(0.0f, Time.deltaTime * _animSpeed, 0.0f);
+                    if (transform.position.y <= _basePosition.y + 1.0f)
+                        _isGoingUp = true;
+                }
             }
         }
 
