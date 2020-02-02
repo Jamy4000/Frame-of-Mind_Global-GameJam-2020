@@ -30,9 +30,13 @@ namespace GGJ.PuzzleLogic
             {
                 OnPuzzleDone.Listeners += ActivateThisPuzzle;
             }
+        }
 
-            // Anger puzzle script miss pieces
-            // Hapiness : 49.5 z, redo colliders
+        private void OnDestroy()
+        {
+            OnPuzzlePieceEdgeConnected.Listeners -= OnPuzzlePieceConnectedCallback;
+            OnConnectionErrorBetweenPieces.Listeners -= ResetCounter;
+            OnPuzzleDone.Listeners -= ActivateThisPuzzle;
         }
 
         private void OnPuzzlePieceConnectedCallback(OnPuzzlePieceEdgeConnected info)

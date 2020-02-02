@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace GGJ.Tutorial
@@ -9,6 +11,7 @@ namespace GGJ.Tutorial
     public class CompletePuzzleScenesLoader : MonoBehaviour
     {
         [SerializeField] private string[] _sceneToLoadOnTutoEnd;
+        [SerializeField] private float _timeToWaitBeforeLoad = 15.0f;
 
         private void Awake()
         {
@@ -23,18 +26,28 @@ namespace GGJ.Tutorial
             }
         }
 
+        private void OnDestroy()
+        {
+            OnTutorialStepDone.Listeners -= CheckTutoStepDone;
+        }
+
         private void CheckTutoStepDone(OnTutorialStepDone info)
         {
             if (info.TutorialStepDone == ETutorialSteps.PLACE_REST_OF_PUZZLE)
             {
                 OnTutorialStepDone.Listeners -= CheckTutoStepDone;
-                VRSF.Core.FadingEffect.OnFadingOutEndedEvent.Listeners += FinishLoadingPuzzlesScenes;
+                StartCoroutine(WaitBeforeLoadingScene());
             }
         }
 
-        private void FinishLoadingPuzzlesScenes(VRSF.Core.FadingEffect.OnFadingOutEndedEvent _)
+        private IEnumerator WaitBeforeLoadingScene()
         {
-            VRSF.Core.FadingEffect.OnFadingOutEndedEvent.Listeners -= FinishLoadingPuzzlesScenes;
+            yield return new WaitForSeconds(_timeToWaitBeforeLoad);
+            FinishLoadingPuzzlesScenes();
+        }
+
+        private void FinishLoadingPuzzlesScenes()
+        {
             for (int i = 0; i < _sceneToLoadOnTutoEnd.Length; i++)
                 SceneManager.LoadSceneAsync(_sceneToLoadOnTutoEnd[i], LoadSceneMode.Additive);
         }

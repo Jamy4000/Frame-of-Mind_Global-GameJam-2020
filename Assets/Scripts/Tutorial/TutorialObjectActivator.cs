@@ -10,13 +10,20 @@ namespace GGJ.Tutorial
         [Header("Tutorial step on which object is activated")]
         [SerializeField] private ETutorialSteps _tutorialStepToActivate;
 
-        private void Awake()
+        private void Start()
         {
             if (_tutorialStepToActivate != ETutorialSteps.GRAB_FIRST_PIECE)
             {
                 OnTutorialStepDone.Listeners += CheckNewTutoStep;
                 gameObject.SetActive(false);
             }
+        }
+
+        private void OnDestroy()
+        {
+
+            if (OnTutorialStepDone.IsMethodAlreadyRegistered(CheckNewTutoStep))
+                OnTutorialStepDone.Listeners -= CheckNewTutoStep;
         }
 
         private void CheckNewTutoStep(OnTutorialStepDone info)
